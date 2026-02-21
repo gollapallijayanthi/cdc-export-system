@@ -1,0 +1,4 @@
+id,name,email,created_at,updated_at,is_deleted
+1,Updated,user1@example.com,2026-02-10 09:28:15.157222+00:00,2026-02-21 18:58:57.040448+00:00,False
+2,Updated,user2@example.com,2026-02-18 12:36:04.969333+00:00,2026-02-21 18:58:57.040448+00:00,False
+3,Updated,user3@example.com,2026-02-14 03:11:20.796324+00:00,2026-02-21 18:58:57.040448+00:00,False

@@ -1,0 +1,4 @@
+id,name,email,created_at,updated_at,is_deleted
+10,CDC TEST,user10@example.com,2026-02-18 09:39:14.997120+00:00,2026-02-21 18:08:30.179903+00:00,False
+11,CDC TEST,user11@example.com,2026-02-17 06:42:06.302562+00:00,2026-02-21 18:08:30.179903+00:00,False
+12,CDC TEST,user12@example.com,2026-02-17 09:28:37.856330+00:00,2026-02-21 18:08:30.179903+00:00,False

@@ -1,0 +1,4 @@
+operation,id,name,email,created_at,updated_at,is_deleted
+DELETE,201,User 201,user201@example.com,2026-02-13 18:14:46.134773+00:00,2026-02-21 18:23:39.419247+00:00,True
+UPDATE,200,DELTA FINAL,user200@example.com,2026-02-21 00:19:58.559131+00:00,2026-02-21 18:23:39.414170+00:00,False
+INSERT,100001,Final Delta,final@delta.com,2026-02-21 18:23:39.422327+00:00,2026-02-21 18:23:39.422327+00:00,False
