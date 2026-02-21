@@ -4,7 +4,7 @@
 
 ## 📌 Objective
 
-Build a \*\*production-ready, containerized data export system\*\* that uses \*\*Change Data Capture (CDC)\*\* principles to efficiently synchronize large datasets.
+Build a **production-ready, containerized data export system** that uses **Change Data Capture (CDC)** principles to efficiently synchronize large datasets.
 
 
 
@@ -38,11 +38,11 @@ Exporting entire datasets repeatedly is inefficient for large tables.
 
 
 
-This project implements \*\*application-level CDC\*\* using:
+This project implements **application-level CDC** using:
 
-- `updated\_at` timestamps
+- `updated_at` timestamps
 
-- Soft deletes (`is\_deleted`)
+- Soft deletes (`is_deleted`)
 
 - **Watermarks** (high-water marks per consumer)
 
@@ -238,7 +238,7 @@ docker-compose ps
 
 
 
-\*\*Expected Output\*\*
+**Expected Output**
 
 
 
