@@ -10,15 +10,15 @@ Build a \*\*production-ready, containerized data export system\*\* that uses \*\
 
 This project demonstrates:
 
-\- Stateful CDC using \*\*watermarking\*\*
+- Stateful CDC using **watermarking**
 
-\- Efficient \*\*full, incremental, and delta exports\*\*
+- Efficient **full, incremental, and delta exports**
 
-\- Asynchronous background processing
+- Asynchronous background processing
 
-\- Handling large datasets (100,000+ rows)
+- Handling large datasets (100,000+ rows)
 
-\- Production-grade containerization and testing
+- Production-grade containerization and testing
 
 
 
@@ -34,27 +34,27 @@ This system simulates real-world backend data pipelines used to sync operational
 
 Exporting entire datasets repeatedly is inefficient for large tables.  
 
-\*\*Change Data Capture (CDC)\*\* solves this by exporting \*\*only data that has changed\*\*.
+**Change Data Capture (CDC)** solves this by exporting **only data that has changed**.
 
 
 
 This project implements \*\*application-level CDC\*\* using:
 
-\- `updated\_at` timestamps
+- `updated\_at` timestamps
 
-\- Soft deletes (`is\_deleted`)
+- Soft deletes (`is\_deleted`)
 
-\- \*\*Watermarks\*\* (high-water marks per consumer)
+- **Watermarks** (high-water marks per consumer)
 
 
 
 Each consumer maintains its own export state, preventing:
 
-\- Duplicate exports
+- Duplicate exports
 
-\- Data loss
+- Data loss
 
-\- Cross-consumer interference
+- Cross-consumer interference
 
 
 
@@ -108,13 +108,13 @@ PostgreSQL Database (Docker)
 
 
 
-\- Docker Compose orchestrates services
+- Docker Compose orchestrates services
 
-\- PostgreSQL stores users and consumer watermarks
+- PostgreSQL stores users and consumer watermarks
 
-\- Exports run asynchronously
+- Exports run asynchronously
 
-\- CSV files are written to a shared volume (`output/`)
+- CSV files are written to a shared volume (`output`)
 
 
 
@@ -124,17 +124,17 @@ PostgreSQL Database (Docker)
 
 ## 🧰 Tech Stack
 
-\- \*\*Language\*\*: Python 3.10
+- **Language**: Python 3.10
 
-\- \*\*Framework\*\*: FastAPI
+- **Framework**: FastAPI
 
-\- \*\*Database\*\*: PostgreSQL 13
+- **Database**: PostgreSQL 13
 
-\- \*\*ORM\*\*: SQLAlchemy
+- **ORM**: SQLAlchemy
 
-\- \*\*Containerization\*\*: Docker, Docker Compose
+- **Containerization**: Docker, Docker Compose
 
-\- \*\*Testing\*\*: Pytest, pytest-cov
+- **Testing**: Pytest, pytest-cov
 
 
 
@@ -210,13 +210,13 @@ cdc-export-system/
 
 \### Prerequisites
 
-\- Docker
+- Docker
 
-\- Docker Compose
+- Docker Compose
 
 
 
-\### Start the System
+### Start the System
 
 ```bash
 
@@ -226,7 +226,7 @@ docker-compose up --build
 
 
 
-\### Verify Containers
+### Verify Containers
 
 
 
@@ -242,9 +242,9 @@ docker-compose ps
 
 
 
-\* `db` → healthy
+* `db` → healthy
 
-\* `app` → running on port 8080
+* `app` → running on port 8080
 
 
 
@@ -264,7 +264,7 @@ curl http://localhost:8080/health
 
 
 
-\*\*Expected Response\*\*
+**Expected Response**
 
 
 
@@ -290,7 +290,7 @@ curl http://localhost:8080/health
 
 
 
-\### Connect to Database
+### Connect to Database
 
 
 
@@ -302,7 +302,7 @@ docker-compose exec db psql -U user -d mydatabase
 
 
 
-\### Verify Tables
+### Verify Tables
 
 
 
@@ -316,7 +316,7 @@ docker-compose exec db psql -U user -d mydatabase
 
 
 
-\### users Table
+### users Table
 
 
 
@@ -342,11 +342,11 @@ Index:
 
 
 
-\* `idx\_users\_updated\_at` on `updated\_at`
+* `idx\_users\_updated\_at` on `updated\_at`
 
 
 
-\### watermarks Table
+### watermarks Table
 
 
 
@@ -374,31 +374,31 @@ The database is automatically seeded on startup using `docker-entrypoint-initdb.
 
 
 
-\### Seed Guarantees
+### Seed Guarantees
 
 
 
-\* ≥ 100,000 users
+* ≥ 100,000 users
 
-\* ≥ 1% soft-deleted users
+* ≥ 1% soft-deleted users
 
-\* Timestamps spread across multiple days
+* Timestamps spread across multiple days
 
-\* Idempotent seeding
+* Idempotent seeding
 
 
 
-\### Verify Seed Data
+### Verify Seed Data
 
 
 
 ```sql
 
-SELECT COUNT(\*) FROM users;
+SELECT COUNT(*) FROM users;
 
-SELECT COUNT(\*) FROM users WHERE is\_deleted = TRUE;
+SELECT COUNT(*) FROM users WHERE is\_deleted = TRUE;
 
-SELECT MIN(updated\_at), MAX(updated\_at) FROM users;
+SELECT MIN(updated_at), MAX(updated\_at) FROM users;
 
 ```
 
@@ -412,7 +412,7 @@ SELECT MIN(updated\_at), MAX(updated\_at) FROM users;
 
 
 
-All exports are \*\*asynchronous\*\* and write CSV files to `output/`.
+All exports are **asynchronous** and write CSV files to `output/`.
 
 
 
@@ -420,7 +420,7 @@ All exports are \*\*asynchronous\*\* and write CSV files to `output/`.
 
 
 
-\### 🔹 Full Export
+### 🔹 Full Export
 
 
 
@@ -438,13 +438,13 @@ curl -X POST http://localhost:8080/exports/full \\
 
 
 
-\*\*Expected Behavior\*\*
+**Expected Behavior**
 
 
 
-\* CSV file created: `full\_consumer-1\_<timestamp>.csv`
+* CSV file created: `full\_consumer-1\_<timestamp>.csv`
 
-\* Watermark initialized or updated
+* Watermark initialized or updated
 
 
 
@@ -452,7 +452,7 @@ curl -X POST http://localhost:8080/exports/full \\
 
 
 
-\### 🔹 Incremental Export
+### 🔹 Incremental Export
 
 
 
@@ -470,13 +470,13 @@ curl -X POST http://localhost:8080/exports/incremental \\
 
 
 
-\*\*Verification Steps\*\*
+**Verification Steps**
 
 
 
-1\. Run full export
+1. Run full export
 
-2\. Update some users:
+2. Update some users:
 
 
 
@@ -488,9 +488,9 @@ UPDATE users SET updated\_at = NOW() WHERE id IN (1,2,3);
 
 
 
-3\. Trigger incremental export
+3. Trigger incremental export
 
-4\. CSV contains only updated rows
+4. CSV contains only updated rows
 
 
 
@@ -498,7 +498,7 @@ UPDATE users SET updated\_at = NOW() WHERE id IN (1,2,3);
 
 
 
-\### 🔹 Delta Export
+### 🔹 Delta Export
 
 
 
@@ -516,19 +516,19 @@ curl -X POST http://localhost:8080/exports/delta \\
 
 
 
-\*\*Operation Rules\*\*
+**Operation Rules**
 
 
 
-\* `INSERT` → created\_at == updated\_at
+* `INSERT` → created\_at == updated\_at
 
-\* `UPDATE` → updated record
+* `UPDATE` → updated record
 
-\* `DELETE` → is\_deleted = TRUE
+* `DELETE` → is\_deleted = TRUE
 
 
 
-\*\*CSV Format\*\*
+**CSV Format**
 
 
 
@@ -548,7 +548,7 @@ operation,id,name,email,created\_at,updated\_at,is\_deleted
 
 
 
-\### Get Watermark
+## Get Watermark
 
 
 
@@ -562,13 +562,13 @@ curl -H "X-Consumer-ID: consumer-1" \\
 
 
 
-\*\*Responses\*\*
+**Responses**
 
 
 
-\* `200 OK` → watermark exists
+* `200 OK` → watermark exists
 
-\* `404 Not Found` → no watermark yet
+* `404 Not Found` → no watermark yet
 
 
 
@@ -580,13 +580,13 @@ curl -H "X-Consumer-ID: consumer-1" \\
 
 
 
-\* Each consumer has independent state
+* Each consumer has independent state
 
-\* Watermarks update \*\*only after successful export\*\*
+* Watermarks update \*\*only after successful export\*\*
 
-\* Failed exports do not advance watermarks
+* Failed exports do not advance watermarks
 
-\* Prevents data duplication and loss
+* Prevents data duplication and loss
 
 
 
@@ -602,15 +602,15 @@ Key events are logged:
 
 
 
-\* Export started
+* Export started
 
-\* Rows exported
+* Rows exported
 
-\* Export completed
+* Export completed
 
-\* Export blocked (no watermark)
+* Export blocked (no watermark)
 
-\* Errors (if any)
+* Errors (if any)
 
 
 
@@ -634,7 +634,7 @@ docker logs cdc-export-system-app-1
 
 
 
-\### Run Tests
+### Run Tests
 
 
 
@@ -694,29 +694,29 @@ EXPORT\_DIR=/app/output
 
 
 
-\* Dockerized application ✅
+* Dockerized application 
 
-\* docker-compose orchestration ✅
+\* docker-compose orchestration 
 
-\* Database health checks ✅
+* Database health checks 
 
-\* CDC-enabled schema ✅
+* CDC-enabled schema 
 
-\* 100k+ seeded dataset ✅
+* 100k+ seeded dataset 
 
-\* Full / Incremental / Delta exports ✅
+* Full / Incremental / Delta exports 
 
-\* Consumer-specific watermarking ✅
+* Consumer-specific watermarking 
 
-\* Structured logging ✅
+* Structured logging 
 
-\* Health endpoint ✅
+* Health endpoint 
 
-\* Test coverage ≥ 70% ✅
+* Test coverage ≥ 70% 
 
-\* `.env.example` provided ✅
+* `.env.example` provided 
 
-\* One-command startup ✅
+* One-command startup 
 
 
 
@@ -732,15 +732,15 @@ This project demonstrates real-world backend engineering skills including:
 
 
 
-\* Stateful data processing
+* Stateful data processing
 
-\* CDC design patterns
+* CDC design patterns
 
-\* Asynchronous job handling
+* Asynchronous job handling
 
-\* Scalable architecture principles
+* Scalable architecture principles
 
-\* Production-ready testing and deployment
+* Production-ready testing and deployment
 
 It closely mirrors patterns used in modern data pipelines and backend systems.
 
